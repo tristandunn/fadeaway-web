@@ -1,0 +1,118 @@
+@import "colors";
+@import "shared";
+@import "reset";
+
+body {
+  padding: 72px 0 0;
+  font: 16px Avenir, "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  line-height: 1;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern";
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  background: $white;
+  width: 100%;
+  border-bottom: 2px solid $grey-200;
+
+  .container {
+    padding: 24px 16px;
+    overflow: hidden;
+  }
+
+  .buy {
+    a {
+      @extend %buy-button;
+
+      margin: -8px 0;
+      padding: 8px 12px;
+    }
+  }
+
+  &.fixed {
+    .buy {
+      display: block;
+    }
+  }
+
+  h1 {
+    font-size: 24px;
+    letter-spacing: -1px;
+    float: left;
+
+    a {
+      color: $blue-grey-600;
+      font-weight: 600;
+    }
+  }
+
+  ul {
+    padding: 4px 0;
+    float: right;
+
+    li {
+      margin: 0 0 0 32px;
+      float: left;
+    }
+  }
+
+  a,
+  button {
+    background: transparent;
+    color: $blue-grey-300;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: $blue-grey-600;
+    }
+  }
+}
+
+.footer {
+  border-top: 2px solid $grey-100;
+  font-size: 14px;
+
+  .container {
+    padding: 48px 16px;
+    overflow: hidden;
+  }
+
+  section {
+    width: 144px;
+    float: left;
+  }
+
+  h1 {
+    color: $grey-500;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  li {
+    padding: 16px 0 0;
+  }
+
+  a {
+    color: $grey-800;
+    text-decoration: none;
+
+    &:hover {
+      color: $blue-400;
+    }
+  }
+}

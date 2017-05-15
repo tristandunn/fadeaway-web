@@ -1,0 +1,76 @@
+@import "../shared";
+
+.sketch {
+  padding: 48px 16px;
+
+  header {
+    text-align: center;
+  }
+
+  h1 {
+    color: $blue-grey-800;
+    margin: 8px 0 24px;
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: -1px;
+
+    span {
+      color: $blue-grey-400;
+      font-size: 22px;
+      display: block;
+    }
+  }
+
+  section {
+    width: 50%;
+    text-align: center;
+    float: left;
+
+    h2 {
+      padding: 48px 0 0;
+      font-size: 24px;
+      font-weight: 500;
+    }
+
+    div {
+      background: $blue-grey-50;
+      padding: 16px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    p {
+      width: 288px;
+      margin: 16px auto;
+      line-height: 1.5;
+    }
+
+    img {
+      float: left;
+    }
+  }
+
+  aside {
+    padding: 64px 0 0;
+    text-align: center;
+    clear: both;
+
+    .button {
+      @extend %buy-button;
+
+      width: 256px;
+      margin: 0 auto;
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .sketch {
+    section {
+      width: auto;
+      float: none;
+    }
+  }
+}

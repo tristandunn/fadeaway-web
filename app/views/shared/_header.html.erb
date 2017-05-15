@@ -1,0 +1,27 @@
+<header class="header">
+  <section class="container">
+    <h1><%= link_to "Fadeaway", root_path %></h1>
+
+    <ul>
+      <% if signed_in? %>
+        <% if administrator? %>
+          <li><%= link_to "Administration", administration_root_path %></li>
+        <% end %>
+
+        <% if current_user.ordered? %>
+          <li><%= link_to "Dashboard", dashboard_index_path %></li>
+        <% else %>
+          <li class="buy"><%= link_to "Buy Now", order_index_path %></li>
+        <% end %>
+
+        <li>
+          <%= form_tag session_index_path, method: :delete do %>
+            <button type="submit">Sign Out</button>
+          <% end %>
+        </li>
+      <% else %>
+        <li><%= link_to "Sign In", Token.authorize_url, rel: "nofollow" %></li>
+      <% end %>
+    </ul>
+  </section>
+</header>

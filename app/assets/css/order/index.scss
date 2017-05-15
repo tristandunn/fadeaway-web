@@ -1,0 +1,32 @@
+@import "shared";
+
+section {
+  .connect {
+    @extend %button;
+
+    background: $dribbble-pink;
+    color: $white;
+    margin: 16px auto;
+    max-width: 416px;
+
+    &:hover {
+      background: $dribbble-pink-dark;
+    }
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    margin: 16px 4px 16px 0;
+    display: inline-block;
+    vertical-align: top;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  section {
+    .connect {
+      font-size: 16px;
+    }
+  }
+}

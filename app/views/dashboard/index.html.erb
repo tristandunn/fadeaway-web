@@ -1,0 +1,49 @@
+<% content_for(:title) { "Dashboard" } %>
+
+<%= render "shared/header" %>
+
+<section class="container dashboard">
+  <section>
+    <h1>Latest Release</h1>
+
+    <h2>Released on <%= @release.created_at.to_date.to_s(:long_ordinal) %>.</h2>
+
+    <%= simple_format @release.description %>
+
+    <% @release.logs.each do |type, changes| %>
+      <% next if changes.empty? %>
+
+      <h3 class="<%= type %>"><%= type.titleize %></h3>
+
+      <ul>
+        <% changes.each do |change| %>
+          <li><%= change %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  </section>
+
+  <aside>
+    <h2>Download</h2>
+
+    <%= link_to "Download v#{@release.version}", release_path(@release, extension: :dmg), class: "download" %>
+
+    <h2>Support</h2>
+
+    <p>E-mail <a href="mailto:hello@tristandunn.com" class="support">hello@tristandunn.com</a> for any bugs, comments, or questions.</p>
+  </aside>
+</section>
+
+<%= render "shared/footer" %>
+
+<% content_for :analytics do %>
+  <script>
+    if (window.ga) {
+      ga("send", "event", "Order", "completed");
+
+      ga("require", "ecommerce");
+      ga("ecommerce:addTransaction", <%== @order.to_transaction %>);
+      ga("ecommerce:send");
+    }
+  </script>
+<% end if flash[:track] %>

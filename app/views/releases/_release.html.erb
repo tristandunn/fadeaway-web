@@ -1,0 +1,25 @@
+<article id="release-<%= release.id %>">
+  <h2>
+    <% if defined?(client) %>
+      <%= release.version %>
+    <% else %>
+      <%= link_to release.version, releases_path(anchor: "release-#{release.id}") %>
+    <% end %>
+
+    <span>Released on <%= release.released_at.to_date.to_s(:long_ordinal) %>.</span>
+  </h2>
+
+  <%= simple_format release.description %>
+
+  <% release.logs.each do |type, changes| %>
+    <% next if changes.empty? %>
+
+    <h3 class="<%= type %>"><%= type.titleize %></h3>
+
+    <ul>
+      <% changes.each do |change| %>
+        <li><%= change %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</article>

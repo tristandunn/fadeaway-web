@@ -1,0 +1,18 @@
+<% content_for(:title) { page.page_title } %>
+
+<header class="header">
+  <h1 class="header__heading"><%= content_for(:title) %></h1>
+
+  <% unless page.__send__(:dashboard).class.const_get("FORM_ATTRIBUTES").empty? %>
+    <div class="header__actions">
+      <%= link_to "Edit", [:edit, namespace, page.resource], class: "button" %>
+    </div>
+  <% end %>
+</header>
+
+<dl>
+  <% page.attributes.each do |attribute| %>
+    <dt class="attribute-label"><%= attribute.name.titleize %></dt>
+    <dd class="attribute-data attribute-data--<%=attribute.html_class%>"><%= render_field attribute %></dd>
+  <% end %>
+</dl>

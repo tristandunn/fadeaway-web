@@ -1,0 +1,40 @@
+<% content_for(:title) { "Sketch" } %>
+
+<%= render "shared/header" %>
+
+<section class="container sketch">
+  <header>
+    <%= retina_image_tag "icons/sketch.png", width: 64, height: 64 %>
+    <h1>Sketch <span>with Fadeaway</span></h1>
+  </header>
+
+  <section>
+    <h2>Open from within Sketch.</h2>
+
+    <p>Quickly export artboards and slices from within Sketch via the Fadeaway plugin.</p>
+
+    <div>
+      <%= retina_image_tag "sketch/plugin.jpg", width: 256, height: 256 %>
+    </div>
+  </section>
+
+  <section>
+    <h2>Import from .sketch file.</h2>
+
+    <p>Import an artboard from a .sketch file via the application or command line.</p>
+
+    <div>
+      <%= retina_image_tag "sketch/open.jpg", width: 256, height: 256 %>
+    </div>
+  </section>
+
+  <aside>
+    <% if current_user.try(:ordered?) %>
+      <p>You can install the plugin from the preference window.</p>
+    <% else %>
+      <%= link_to "Buy Now for #{cents_to_currency @order.amount_with_discount}", order_index_path, class: "button" %>
+    <% end %>
+  </aside>
+</section>
+
+<%= render "shared/footer" %>

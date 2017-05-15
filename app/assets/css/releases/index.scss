@@ -1,0 +1,89 @@
+@import "colors";
+@import "../shared";
+@import "../pages/policy";
+
+.releases {
+  article {
+    margin: 32px 0 0;
+    padding: 32px 0 0;
+    border-top: 1px solid $blue-grey-100;
+  }
+
+  p,
+  h3,
+  ul {
+    margin: 12px 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+
+    a {
+      color: $black;
+      border: 0;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    span {
+      color: $blue-grey-500;
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+
+  h3 {
+    color: $white;
+    margin: 0 0 8px;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+
+    &.additions {
+      background: $orange-500;
+    }
+
+    &.changes {
+      background: $light-blue-500;
+    }
+
+    &.fixes {
+      background: $green-500;
+    }
+
+    &.removed {
+      background: $red-500;
+    }
+  }
+
+  ul {
+    margin-top: 0;
+    list-style: disc inside;
+  }
+}
+
+
+@media screen and (max-width: 720px) {
+  .releases {
+    p,
+    h3,
+    ul {
+      font-size: 14px;
+    }
+
+    h2 {
+      font-size: 18px;
+
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<section class="container">
+  <%= render "header" %>
+
+  <section>
+    <h1>Payment</h1>
+
+    <p>We will charge your credit card <%= cents_to_currency @order.amount_with_discount %> to buy a copy of Fadeaway for <%= current_user.name %>.</p>
+
+    <%= form_for @order, url: order_index_path do |form| %>
+      <%= form.hidden_field :card_token, id: "card_token" %>
+
+      <label for="email">E-mail Address</label>
+      <%= form.email_field :email, required: true, class: "email" %>
+
+      <label for="card_number">Card Number</label>
+      <%= text_field_tag :card_number, "", name: nil, required: true, class: "card" %>
+
+      <div class="expiration">
+        <label for="card_month">Expiration</label>
+        <%= text_field_tag :card_month, "", name: nil, required: true, maxlength: 2, placeholder: "MM" %>
+        <%= text_field_tag :card_year,  "", name: nil, required: true, maxlength: 4, placeholder: "YY" %>
+      </div>
+
+      <div class="code">
+        <label for="card_cvc">CVC</label>
+        <%= text_field_tag :card_cvc, "", name: nil, required: true, maxlength: 4 %>
+      </div>
+
+      <div class="buttons">
+        <p id="error" class="error-message"></p>
+        <button type="submit">Purchase</button>
+      </div>
+
+      <p class="security">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 12 16">
+          <path d="M4 13h-1v-1h1v1z m8-6v7c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V7c0-0.55 0.45-1 1-1h1V4C2 1.8 3.8 0 6 0s4 1.8 4 4v2h1c0.55 0 1 0.45 1 1z m-8.2-1h4.41V4c0-1.22-0.98-2.2-2.2-2.2s-2.2 0.98-2.2 2.2v2z m7.2 1H2v7h9V7z m-7 1h-1v1h1v-1z m0 2h-1v1h1v-1z" fill="#90A4AE" />
+        </svg>
+        Secured with SSL encryption. Powered by Stripe.
+      </p>
+    <% end %>
+  </section>
+
+  <aside>
+    <h2>Why is my e-mail address required?</h2>
+
+    <p>We use your e-mail address to send you a receipt and to identify you for support.</p>
+
+    <h2>How will the charge statement appear?</h2>
+
+    <p>The charge will appear on your credit card as a &#8220;FADEAWAY&#8221; charge from Stripe.</p>
+
+    <h2>Is a student discount available?</h2>
+
+    <p>Yes. E-mail <a href="mailto:hello@tristandunn.com">hello@tristandunn.com</a> proof of enrollment after purchasing for a $15 refund.</p>
+
+    <h2>Still have questions?</h2>
+
+    <p>E-mail <a href="mailto:hello@tristandunn.com">hello@tristandunn.com</a> to talk to a real person.</p>
+  </aside>
+</section>
+
+<% content_for :javascript do %>
+  <script src="https://js.stripe.com/v2/"></script>
+  <script>
+    Stripe.setPublishableKey(<%== ENV["STRIPE_PUBLIC_KEY"].to_json %>);
+  </script>
+  <script>
+    <%== Rails.application.assets["order.js"] %>
+    Order.initialize({ "error" : <%== flash[:error].to_json %> });
+  </script>
+<% end %>
+
+<% content_for :analytics do %>
+  <script>
+    ga("send", "event", "Order", "connected");
+  </script>
+<% end %>

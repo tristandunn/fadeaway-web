@@ -1,0 +1,18 @@
+default: &default
+  pool: 5
+  adapter: postgresql
+  encoding: unicode
+
+development:
+  <<: *default
+  database: getfadeaway_development
+
+test:
+  <<: *default
+  database: getfadeaway_test
+
+production:
+  <<: *default
+  host: localhost
+  username: postgres
+  database: getfadeaway_production

@@ -1,0 +1,25 @@
+<% content_for(:title) do %>
+  <%= display_resource_name(page.resource_name) %>
+<% end %>
+
+<% content_for(:search) do %>
+  <form class="search">
+    <span class="search__icon"><%= svg_tag "administrate/search.svg", "search", width: 16, height: 16 %></span>
+    <input type="text" name="search" class="search__input" placeholder="Search" value="<%= search_term %>" aria-label="Search" />
+    <span class="search__hint">Press enter to search</span>
+  </form>
+<% end %>
+
+<header class="header">
+  <h1 class="header__heading" id="page-title"><%= content_for(:title) %></h1>
+
+  <% unless page.__send__(:dashboard).class.const_get("FORM_ATTRIBUTES").empty? %>
+    <div class="header__actions">
+      <%= link_to "New #{page.resource_name.titleize.downcase}", [:new, namespace, page.resource_name], class: "button" %>
+    </div>
+  <% end %>
+</header>
+
+<%= render "collection", collection_presenter: page, resources: resources %>
+
+<%= paginate resources %>

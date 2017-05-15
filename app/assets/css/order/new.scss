@@ -1,0 +1,102 @@
+@import "shared";
+
+section {
+  section {
+    .error-message {
+      margin: 0;
+      display: none;
+    }
+  }
+
+  label {
+    padding: 8px 0 4px;
+    font-weight: 600;
+    display: block;
+  }
+
+  input {
+    width: 96px;
+    margin: 0 0 16px;
+    padding: 10px 12px;
+    border: 2px solid $blue-grey-100;
+    border-radius: 3px;
+    font-size: 16px;
+    display: inline-block;
+
+    &:focus {
+      border-color: $green-200;
+    }
+
+    &.card,
+    &.email {
+      width: 100%;
+      display: block;
+    }
+
+    &.error {
+      border-color: $red-200;
+    }
+  }
+
+  // scss-lint:disable SelectorFormat
+  .field_with_errors input {
+    border-color: $red-200;
+  }
+  // scss-lint:enable SelectorFormat
+
+  .code {
+    float: right;
+  }
+
+  .expiration {
+    float: left;
+  }
+
+  .buttons {
+    padding: 16px 0 0;
+    clear: both;
+  }
+
+  .security {
+    color: $blue-grey-300;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  button {
+    @extend %button;
+
+    background: $green-500;
+    color: $white;
+    margin: 8px 0 16px;
+    cursor: pointer;
+
+    &:hover {
+      background: $green-600;
+    }
+
+    &.disabled {
+      opacity: 0.66;
+    }
+  }
+
+  svg {
+    width: 12px;
+    height: 16px;
+    vertical-align: middle;
+  }
+}
+
+@media screen and (max-width: 960px) {
+  section {
+    section {
+      input {
+        width: 64px;
+      }
+
+      .security {
+        font-size: 12px;
+      }
+    }
+  }
+}

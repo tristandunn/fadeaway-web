@@ -1,0 +1,11 @@
+<% data = field.data %>
+
+<% if field.attribute == :remote_id %>
+  <% if data =~ /^ch_/ %>
+    <%= link_to data, %{https://dashboard.stripe.com/payments/#{data}}, target: "_blank" %>
+  <% elsif data =~ /^re_/ %>
+    <%= link_to data, %{https://dashboard.stripe.com/search?query=#{data}}, target: "_blank" %>
+  <% end %>
+<% else %>
+  <%= data %>
+<% end %>

@@ -1,0 +1,29 @@
+@import "colors";
+
+%button {
+  width: 100%;
+  height: 56px;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 56px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  transition: background-color 0.25s;
+}
+
+%buy-button {
+  background: $light-green-500;
+  color: $white;
+  padding: 18px 0;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+
+  &:hover {
+    background: darken($light-green-500, 6%);
+    color: $white;
+  }
+}

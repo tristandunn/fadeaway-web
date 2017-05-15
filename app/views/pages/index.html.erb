@@ -1,0 +1,74 @@
+<%= render "shared/header" %>
+
+<% if @discount.present? %>
+  <section class="discount discount-<%= @discount.name.parameterize %>">
+    <div class="container">
+      <% if @discount.name == "Notification" %>
+        <h1>Thanks for your early interest!</h1>
+      <% else %>
+        <h1>Welcome from <%= @discount.name %>!</h1>
+      <% end %>
+
+      <p>Receive a <strong><%= cents_to_currency @discount.amount %> discount</strong> on Fadeaway, if you buy today!</p>
+    </div>
+  </section>
+<% end %>
+
+<section class="container homepage">
+  <%= retina_image_tag "preview.jpg", width: 560, height: 330 %>
+
+  <h1>Simple &#38; quick desktop<br>uploading for Dribbble.</h1>
+</section>
+
+<section class="feature">
+  <div class="container">
+    <header>
+      <h1>Integrate</h1>
+      <p>Upload to Dribbble faster than ever from popular design applications, or via the command line for custom usage.</p>
+    </header>
+
+    <aside>
+      <div class="application terminal">
+        <%= retina_image_tag "icons/terminal.png", width: 64, height: 64 %>
+        <h2>Terminal</h2>
+      </div>
+
+      <div class="application sketch">
+        <%= link_to sketch_path do %>
+          <%= retina_image_tag "icons/sketch.png", width: 48, height: 64 %>
+          <h2 class="learn-more">Sketch</h2>
+        <% end %>
+      </div>
+
+      <div class="application photoshop">
+        <%= retina_image_tag "icons/photoshop.png", width: 48, height: 64 %>
+        <h2 class="coming-soon">Photoshop</h2>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="feature">
+  <div class="container">
+    <section>
+      <h1 class="coming-soon">Organize</h1>
+      <p>Add to buckets or associate tags automatically based on associated project or team.</p>
+    </section>
+
+    <section>
+      <h1 class="coming-soon">Promote</h1>
+      <p>Append custom signatures customized for yourself, your teams, and your projects.</p>
+    </section>
+  </div>
+</section>
+
+<%= render "shared/footer" %>
+
+<%= content_for :meta do %>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@getfadeaway">
+  <meta name="twitter:creator" content="@tristandunn">
+  <meta name="twitter:title" content="Fadeaway">
+  <meta name="twitter:description" content="A desktop application for uploading to Dribbble.">
+  <meta name="twitter:image" content="<%= image_url "card.jpg" %>">
+<% end %>

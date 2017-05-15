@@ -1,0 +1,22 @@
+<%= render "shared/header" %>
+
+<section class="container policy releases">
+  <header>
+    <%= header "Releases" %>
+
+    <p>The latest version of Fadeaway is <%= @releases.first.version %>.</p>
+
+    <% if @releases.size > 1 %>
+      <p>
+        There have been <%= @releases.size %> releases since Fadeaway was first
+        published on <%= @releases.last.released_at.to_date.to_s(:long_ordinal) %>.
+      </p>
+    <% end %>
+
+    <p>Below are the release notes for each version.</p>
+  </header>
+
+  <%= render @releases %>
+</section>
+
+<%= render "shared/footer" %>
